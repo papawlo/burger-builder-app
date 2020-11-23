@@ -15,11 +15,12 @@ const orderSummary = (props) => {
 
     return (
         <Aux>
-            <h3>Your ORder</h3>
+            <h3>Your Order</h3>
             <p>A delicious Burger with the following ingredients:</p>
             <ul>
                 {ingredientSummary}
             </ul>
+            <p><strong>Total Price: ${props.price.toFixed(2)}</strong></p>
             <p>Continue to Checkout?</p>
             <Button
                 btnType="Danger"
