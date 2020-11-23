@@ -111,3 +111,25 @@
     background: linear-gradient(#bf3813, #c45e38);
     margin: 2% auto;
 }
+
+
+.Meat,
+.Cheese,
+.Bacon,
+.Salad {
+    animation: enable 0.3s linear;
+}
+
+@keyframes enable {
+    0% {
+        transform: scale(1);
+    }
+
+    60% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
