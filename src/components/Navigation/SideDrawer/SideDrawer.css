@@ -26,3 +26,11 @@
 .Close {
     transform: translateX(-100%);
 }
+
+.Logo {
+    height: 10%;
+}
+
+.Logo>div {
+    border: none;
+}
