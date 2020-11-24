@@ -1,12 +1,18 @@
 .Logo {
-    background: #fff;
+    /* background: #fff; */
     /* background: rgb(207, 143, 46); */
     /* background: radial-gradient(circle, rgba(207, 143, 46, 1) 0%, rgba(112, 59, 9, 1) 61%, rgba(112, 59, 9, 1) 100%); */
     padding: 8px;
     height: 100%;
     box-sizing: border-box;
-    border-radius: 5px;
-    border: 1px solid rgb(207, 143, 46);
+    /* border-radius: 5px;
+    border: 1px solid rgb(207, 143, 46); */
+    /* filter: drop-shadow(0 0 2px white); */
+    transition: transform 0.3s ease-in-out;
+}
+
+.Logo:hover {
+    transform: scale(1.1)
 }
 
 .Logo img {
