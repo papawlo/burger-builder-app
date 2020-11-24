@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Aux from '../../../hoc/Auxiliary';
+import Aux from '../../../hoc/Auxiliary/Auxiliary';
 import Button from '../../UI/Button/Button';
 
 class OrderSummary extends Component {
@@ -10,7 +10,9 @@ class OrderSummary extends Component {
     }
 
     render() {
-        let ingredientSummary = Object.keys(this.props.ingredients)
+        let ingredientSummary;
+
+        ingredientSummary = Object.keys(this.props.ingredients)
             .map(igKey => {
                 return (
                     <li key={igKey}>
