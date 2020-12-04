@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Button from '../../../components/UI/Button/Button';
 import classes from './ContactData.css'
-import axios from '../../../axios-order'
+import axios from '../../../axios-orders'
 import Spinner from '../../../components/UI/Spinner/Spinner';
 
 export default class ContactData extends Component {
