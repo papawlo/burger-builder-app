@@ -7,11 +7,62 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 
 export default class ContactData extends Component {
     state = {
-        name: '',
-        email: '',
-        address: {
-            street: '',
-            postalCode: ''
+        orderForm: {
+            name: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Your Name'
+                },
+                value: ''
+            },
+            email: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'email',
+                    placeholder: 'you@example.com'
+                },
+                value: ''
+            },
+            street: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Street'
+                },
+                value: ''
+            },
+            zipCode: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Zip Code'
+                },
+                value: ''
+            },
+            country: {
+                elementType: 'input',
+                elementConfig: {
+                    type: 'text',
+                    placeholder: 'Country'
+                },
+                value: ''
+            },
+            deliveryMethod: {
+                elementType: 'select',
+                elementConfig: {
+                    options: [{
+                        value: 'ASAP',
+                        displayValue: 'ASAP'
+                    }],
+                    options: [{
+                        value: 'cheapest',
+                        displayValue: 'cheapest'
+                    }],
+                    placeholder: 'Your Name'
+                },
+                value: ''
+            }
         },
         loading: false
     }
@@ -23,16 +74,7 @@ export default class ContactData extends Component {
         const order = {
             ingredients: this.props.ingredients,
             price: this.props.totalPrice,
-            customer: {
-                name: 'Djow Silva',
-                address: {
-                    street: 'Test Street',
-                    zipCode: '3999384',
-                    country: 'Ireland'
-                },
-                email: 'teste@teste.com',
-            },
-            deliveryMethod: 'ASAP'
+
         }
 
         axios.post('/orders.json', order)
@@ -49,12 +91,29 @@ export default class ContactData extends Component {
     }
 
     render() {
+        const formElementsArray = [];
+        for (const key in this.state.orderForm) {
+            if (this.state.orderForm.hasOwnProperty(key)) {
+                formElementsArray.push({
+                    id: key,
+                    config: this.state.orderForm[key]
+                });
+            }
+        }
+
+
         let form = (
-            <form autocomplete="false">
-                <Input inputtype="input" type="text" name="name" placeholder="Your name" label="Name" autocomplete="false" />
-                <Input inputtype="input" type="email" name="email" placeholder="Your email" />
-                <Input inputtype="input" type="text" name="street" placeholder="Street" />
-                <Input inputtype="input" type="text" name="postalCode" placeholder="Posta Code" />
+            <form autoComplete="false">
+
+                {formElementsArray.map(formElement => {
+                    return <Input
+                        key={formElement.id}
+                        elementType={formElement.config.elementType}
+                        elementConfig={formElement.config.elementConfig}
+                        value={formElement.config.value}
+                    />
+                })}
+
                 <Button
                     btnType="Success"
                     clicked={this.orderHandle}>
