@@ -8,7 +8,7 @@
 .NavigationItem a {
     color: #8F5C2C;
     text-decoration: none;
-    width: 100%;
+    width: max-content;
     box-sizing: border-box;
     display: block;
 }
