@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './Input.css'
 
 const input = (props) => {
-    console.log(props)
+    // console.log(props)
     let inputElement = null;
 
     switch (props.elementType) {
