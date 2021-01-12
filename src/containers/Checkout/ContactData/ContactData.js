@@ -11,6 +11,7 @@ export default class ContactData extends Component {
             name: {
                 elementType: 'input',
                 elementConfig: {
+                    label: 'Name',
                     type: 'text',
                     placeholder: 'Your Name'
                 },
@@ -24,6 +25,7 @@ export default class ContactData extends Component {
             email: {
                 elementType: 'input',
                 elementConfig: {
+                    label: 'Email',
                     type: 'email',
                     placeholder: 'you@example.com'
                 },
@@ -37,6 +39,7 @@ export default class ContactData extends Component {
             street: {
                 elementType: 'input',
                 elementConfig: {
+                    label: 'Street',
                     type: 'text',
                     placeholder: 'Street'
                 },
@@ -50,6 +53,7 @@ export default class ContactData extends Component {
             zipCode: {
                 elementType: 'input',
                 elementConfig: {
+                    label: 'Zip Code',
                     type: 'text',
                     placeholder: 'Zip Code'
                 },
@@ -65,6 +69,7 @@ export default class ContactData extends Component {
             country: {
                 elementType: 'input',
                 elementConfig: {
+                    label: 'Country',
                     type: 'text',
                     placeholder: 'Country'
                 },
@@ -77,6 +82,7 @@ export default class ContactData extends Component {
             deliveryMethod: {
                 elementType: 'select',
                 elementConfig: {
+                    label: 'Delivery Method',
                     options: [{
                         value: 'ASAP',
                         displayValue: 'ASAP'
@@ -172,6 +178,7 @@ export default class ContactData extends Component {
                 {formElementsArray.map(formElement => {
                     return <Input
                         key={formElement.id}
+                        // label={formElement.config.label}
                         elementType={formElement.config.elementType}
                         elementConfig={formElement.config.elementConfig}
                         value={formElement.config.value}
