@@ -14,3 +14,9 @@
         width: 500px;
     }
 }
+
+.ContactData .Button:first-of-type {
+    margin-left: inherit;
+    padding-left: inherit;
+    outline: red !important;
+}

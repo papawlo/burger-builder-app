@@ -7,6 +7,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 
 export default class ContactData extends Component {
     state = {
+        formIsValid: false,
         orderForm: {
             name: {
                 elementType: 'input',
@@ -93,7 +94,8 @@ export default class ContactData extends Component {
                     }],
                     placeholder: 'Your Name'
                 },
-                value: ''
+                value: '',
+                valid: true
             }
         },
         loading: false
@@ -131,14 +133,16 @@ export default class ContactData extends Component {
 
     checkValidity(value, rules) {
         let isValid = true;
-        if (rules.required) {
-            isValid = value.trim() !== '' && isValid;
-        }
-        if (rules.minLength) {
-            isValid = value.length >= rules.minLength && isValid;
-        }
-        if (rules.maxLength) {
-            isValid = value.length <= rules.maxLength && isValid;
+        if (rules !== null && rules !== undefined) {
+            if (rules.required) {
+                isValid = value.trim() !== '' && isValid;
+            }
+            if (rules.minLength) {
+                isValid = value.length >= rules.minLength && isValid;
+            }
+            if (rules.maxLength) {
+                isValid = value.length <= rules.maxLength && isValid;
+            }
         }
 
         return isValid;
@@ -155,8 +159,11 @@ export default class ContactData extends Component {
         updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
         updatedFormElement.touched = true;
         updatedOrderForm[inputIdentifier] = updatedFormElement;
-        console.log(updatedFormElement);
-        this.setState({ orderForm: updatedOrderForm });
+        let formIsValid = true;
+        for (let inputIdentifier in updatedOrderForm) {
+            formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
+        }
+        this.setState({ orderForm: updatedOrderForm, formIsValid: formIsValid });
     }
 
     render() {
@@ -178,7 +185,6 @@ export default class ContactData extends Component {
                 {formElementsArray.map(formElement => {
                     return <Input
                         key={formElement.id}
-                        // label={formElement.config.label}
                         elementType={formElement.config.elementType}
                         elementConfig={formElement.config.elementConfig}
                         value={formElement.config.value}
@@ -190,6 +196,7 @@ export default class ContactData extends Component {
                 })}
 
                 <Button
+                    disabled={!this.state.formIsValid}
                     btnType="Success"                    >
                     ORDER
                     </Button>
