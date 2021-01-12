@@ -1,5 +1,5 @@
 .Button {
-    width: min(75%, 600px);
+    width: min(100%, 400px);
     background-color: transparent;
     border: none;
     color: white;
@@ -12,10 +12,7 @@
     box-sizing: border-box;
 }
 
-/* .Button:first-of-type {
-    margin-left: 0;
-    padding-left: 0;
-} */
+
 
 .Button:disabled {
     background-color: #cecece;
@@ -31,4 +28,14 @@
 .Danger {
     color: hsl(21, 73%, 34%);
     background-color: hsl(21, 100%, 74%);
+}
+
+@media only screen and (min-width: 600px) {
+    .Button {
+        width: min(40%, 300px);
+    }
+
+    .Button:last-of-type {
+        float: right;
+    }
 }
