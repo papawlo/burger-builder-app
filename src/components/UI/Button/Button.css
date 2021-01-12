@@ -12,10 +12,10 @@
     box-sizing: border-box;
 }
 
-.Button:first-of-type {
-    /* margin-left: 0;
-    padding-left: 0; */
-}
+/* .Button:first-of-type {
+    margin-left: 0;
+    padding-left: 0;
+} */
 
 .Button:disabled {
     background-color: #cecece;
