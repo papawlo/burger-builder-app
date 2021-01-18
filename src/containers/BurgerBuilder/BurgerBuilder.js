@@ -37,7 +37,7 @@ class BurgerBuilder extends Component {
         const sum = Object.keys(ingredients).map(igKey => {
             return ingredients[igKey];
         }).reduce((sum, el) => { return sum + el; }, 0);
-        this.setState({ purchaseable: sum > 0 })
+        return sum > 0;
     }
 
     // addIngredientHandler = (type) => {
@@ -79,8 +79,6 @@ class BurgerBuilder extends Component {
         this.setState({ purchasing: false })
     }
     purchaseContinueHandler = () => {
-
-
         const queryParams = [];
         for (const i in this.props.ings) {
             if (this.props.ings.hasOwnProperty(i)) {
@@ -121,7 +119,7 @@ class BurgerBuilder extends Component {
                         ingredientRemoved={this.props.onIngredientRemoved}
                         disabled={disabledInfo}
                         currentPrice={this.props.price}
-                        purchaseable={this.state.purchaseable}
+                        purchaseable={this.updatePurchaseState(this.props.ings)}
                         ordered={this.purchaseHandler}
                     />
                 </Aux>
