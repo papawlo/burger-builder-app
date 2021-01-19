@@ -40,44 +40,14 @@ class BurgerBuilder extends Component {
         return sum > 0;
     }
 
-    // addIngredientHandler = (type) => {
-    //     const oldCount = this.props.ings[type];
-    //     const updateCount = oldCount + 1;
-    //     const updatedIngredients = {
-    //         ...this.props.ings
-    //     };
-    //     updatedIngredients[type] = updateCount;
-
-    //     const priceAddition = INGREDIENT_PRICES[type];
-    //     const oldPrice = this.props.price;
-    //     const newPrice = oldPrice + priceAddition;
-    //     this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
-    //     this.updatePurchaseState(updatedIngredients);
-    // }
-    // removeIngredientHandler = (type) => {
-    //     const oldCount = this.props.ings[type];
-    //     if (oldCount <= 0) {
-    //         return;
-    //     }
-    //     const updateCount = oldCount - 1;
-    //     const updatedIngredients = {
-    //         ...this.props.ings
-    //     };
-    //     updatedIngredients[type] = updateCount;
-
-    //     const priceDeduction = INGREDIENT_PRICES[type];
-    //     const oldPrice = this.props.price;
-    //     const newPrice = oldPrice - priceDeduction;
-    //     this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
-    //     this.updatePurchaseState(updatedIngredients);
-    // }
-
     purchaseHandler = () => {
         this.setState({ purchasing: true })
     }
+
     purchaseCancelHandler = () => {
         this.setState({ purchasing: false })
     }
+
     purchaseContinueHandler = () => {
 
         this.props.history.push(
@@ -113,6 +83,7 @@ class BurgerBuilder extends Component {
                     />
                 </Aux>
             );
+
             orderSummary = <OrderSummary
                 ingredients={this.props.ings}
                 purchaseCancelled={this.purchaseCancelHandler}

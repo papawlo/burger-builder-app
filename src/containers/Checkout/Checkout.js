@@ -5,31 +5,11 @@ import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSumm
 import ContactData from './ContactData/ContactData';
 
 class Checkout extends Component {
-    // state = {
-    //     ingredients: null,
-    //     totalPrice: 0
-    // }
-
-    // componentWillMount() {
-    //     // console.log(this.state.ingredients)
-    //     const query = new URLSearchParams(this.props.location.search);
-    //     const ingredients = {};
-    //     for (let param of query.entries()) {
-    //         if (param[0] === 'price') {
-    //             this.setState({ totalPrice: param[1] });
-    //         } else {
-
-    //             ingredients[param[0]] = +param[1];
-    //         }
-    //     }
-
-    //     this.setState({ ingredients: ingredients })
-
-    // }
 
     checkoutCancelledHandler = () => {
         this.props.history.goBack();
     }
+
     checkoutContinuedHandler = () => {
         this.props.history.replace('/checkout/contact-data');
     }
@@ -51,9 +31,11 @@ class Checkout extends Component {
         )
     }
 }
+
 const mapStateToProps = state => {
     return {
         ings: state.ingredients
     }
 }
+
 export default connect(mapStateToProps)(Checkout);
