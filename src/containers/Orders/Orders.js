@@ -4,7 +4,6 @@ import Order from '../../components/Order/Order'
 import axios from '../../axios-orders'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 import * as actions from '../../store/actions/index';
-import moduleName from '../../components/UI/Spinner/Spinner';
 import Spinner from '../../components/UI/Spinner/Spinner';
 export class Orders extends Component {
 
