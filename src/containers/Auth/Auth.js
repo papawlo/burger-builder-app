@@ -47,6 +47,9 @@ export default class Auth extends Component {
             if (rules.required) {
                 isValid = value.trim() !== '' && isValid;
             }
+            if (rules.isEmail) {
+                isValid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value.trim()) && isValid;
+            }
             if (rules.minLength) {
                 isValid = value.length >= rules.minLength && isValid;
             }
@@ -58,22 +61,22 @@ export default class Auth extends Component {
         return isValid;
     }
 
-    inputChangedHandler = (event, inputIdentifier) => {
-        const updatedOrderForm = {
+    inputChangedHandler = (event, controlName) => {
+        const updatedControls = {
             ...this.state.controls
         };
-        const updatedFormElement = {
-            ...updatedOrderForm[inputIdentifier]
+        const updatedControlName = {
+            ...updatedControls[controlName]
         }
-        updatedFormElement.value = event.target.value;
-        updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
-        updatedFormElement.touched = true;
-        updatedOrderForm[inputIdentifier] = updatedFormElement;
+        updatedControlName.value = event.target.value;
+        updatedControlName.valid = this.checkValidity(updatedControlName.value, updatedControlName.validation);
+        updatedControlName.touched = true;
+        updatedControls[controlName] = updatedControlName;
         let formIsValid = true;
-        for (let inputIdentifier in updatedOrderForm) {
-            formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
+        for (let controlName in updatedControls) {
+            formIsValid = updatedControls[controlName].valid && formIsValid;
         }
-        this.setState({ orderForm: updatedOrderForm, formIsValid: formIsValid });
+        this.setState({ controls: updatedControls, formIsValid: formIsValid });
     }
 
     render() {
