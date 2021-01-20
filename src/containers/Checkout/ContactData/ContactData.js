@@ -105,7 +105,7 @@ class ContactData extends Component {
     }
 
 
-    orderHandle = (e) => {
+    orderHandler = (e) => {
         e.preventDefault();
 
         const formData = {};
@@ -170,7 +170,7 @@ class ContactData extends Component {
 
 
         let form = (
-            <form onSubmit={this.orderHandle}>
+            <form onSubmit={this.orderHandler}>
 
                 {formElementsArray.map(formElement => {
                     return <Input
