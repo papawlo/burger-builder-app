@@ -35,7 +35,7 @@ const fetchOrdersSuccess = (state, action) => {
     });
 }
 const fetchOrdersFail = (state, action) => {
-    return updateObject(state, { loading: false });
+    return updateObject(state, { loading: false, orders: [] });
 }
 const reducer = (state = initialState, action) => {
     switch (action.type) {
