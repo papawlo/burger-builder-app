@@ -23,7 +23,7 @@ export const authFail = (error) => {
     }
 };
 
-export const logOut = () => {
+export const logout = () => {
     return {
         type: actionTypes.AUTH_LOGOUT
     };
