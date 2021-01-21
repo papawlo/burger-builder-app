@@ -94,7 +94,7 @@ class Auth extends Component {
         //     price: this.props.price,
         //     orderData: formData,
         // }
-        this.props.onAuth(this.state.controls.email, this.state.controls.password);
+        this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value);
     }
 
     render() {
