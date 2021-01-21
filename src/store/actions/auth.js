@@ -23,7 +23,7 @@ export const authFail = (error) => {
 
 export const auth = (email, password, isSignup) => {
 
-    console.log(email, password);
+    console.log(email, password, isSignup);
     return dispatch => {
         dispatch(authStart());
         const authData = {
@@ -40,8 +40,10 @@ export const auth = (email, password, isSignup) => {
             url,
             authData
         ).then(response => {
+            console.log("🚀 ~ file: auth.js ~ line 43 ~ auth ~ response", response)
             dispatch(authSuccess(response.data))
         }).catch(err => {
+            console.log("🚀 ~ file: auth.js ~ line 46 ~ auth ~ err", err)
             console.log(err);
             dispatch(authFail(err));
         });
