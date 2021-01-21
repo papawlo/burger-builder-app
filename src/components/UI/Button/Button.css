@@ -30,6 +30,11 @@
     background-color: hsl(21, 100%, 74%);
 }
 
+.Info {
+    color: hsl(202, 73%, 34%);
+    background-color: hsl(212, 100%, 74%);
+}
+
 @media only screen and (min-width: 600px) {
     .Button {
         width: min(40%, 300px);

@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 class Auth extends Component {
     state = {
         formIsValid: false,
+        isSignup: true,
         controls: {
             email: {
                 elementType: 'input',
@@ -83,20 +84,14 @@ class Auth extends Component {
 
     submitHandler = (e) => {
         e.preventDefault();
-
-        // const formData = {};
-        // for (let controlName in this.state.controls) {
-        //     formData[controlName] = this.state.controls[controlName].value;
-        // }
-
-        // const order = {
-        //     ingredients: this.props.ings,
-        //     price: this.props.price,
-        //     orderData: formData,
-        // }
-        this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value);
+        this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
     }
 
+    switchAuthModeHandler = () => {
+        this.setState(prevState => {
+            return { isSignup: !prevState.isSignup }
+        })
+    }
     render() {
         // console.log(this.props.ingredients);
         const formElementsArray = [];
@@ -126,10 +121,11 @@ class Auth extends Component {
 
                 <Button
                     disabled={!this.state.formIsValid}
-                    btnType="Success"                    >
+                    btnType="Success">
                     SUBMIT
                     </Button>
             </form>
+
         );
         return (
             <div className={classes.ContactData}>
@@ -137,13 +133,18 @@ class Auth extends Component {
                     LOG IN
                 </h4>
                 {form}
+                <Button
+                    clicked={this.switchAuthModeHandler}
+                    btnType="Info">
+                    SWITCH TO {this.state.isSignup ? 'SIGN IN' : 'SIGN UP'}
+                </Button>
             </div>
         )
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email, password) => dispatch(actions.auth(email, password))
+        onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup))
     }
 }
 
