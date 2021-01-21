@@ -15,8 +15,13 @@
     }
 }
 
-.Auth .Button:first-of-type {
+/* .Auth .Button:first-of-type {
     margin-left: inherit;
     padding-left: inherit;
     outline: red !important;
+} */
+
+.ErrorMessage {
+    color: tomato;
+    font-weight: bold;
 }

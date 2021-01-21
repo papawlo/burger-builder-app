@@ -40,7 +40,7 @@
         width: min(40%, 300px);
     }
 
-    .Button:last-of-type {
+    /* .Button:last-of-type {
         float: right;
-    }
+    } */
 }
