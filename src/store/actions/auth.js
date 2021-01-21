@@ -2,16 +2,16 @@ import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
 
-export const authStart = (...args) => {
-    console.log(args);
+export const authStart = () => {
     return {
         type: actionTypes.AUTH_START
     }
 }
-export const authSuccess = (authData) => {
+export const authSuccess = (token, userId) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
-        authData: authData
+        idToken: token,
+        userId: userId
     }
 }
 export const authFail = (error) => {
@@ -40,11 +40,10 @@ export const auth = (email, password, isSignup) => {
             url,
             authData
         ).then(response => {
-            console.log("🚀 ~ file: auth.js ~ line 43 ~ auth ~ response", response)
-            dispatch(authSuccess(response.data))
+            console.log("🚀 ~ file: auth.js ~ line 43 ~ auth ~ response", response);
+            dispatch(authSuccess(response.data.idToken, response.data.localId));
         }).catch(err => {
-            console.log("🚀 ~ file: auth.js ~ line 46 ~ auth ~ err", err)
-            console.log(err);
+            console.log("🚀 ~ file: auth.js ~ line 46 ~ auth ~ err", err);
             dispatch(authFail(err));
         });
     }

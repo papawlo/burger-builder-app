@@ -5,6 +5,7 @@ import classes from './Auth.css';
 import * as actions from '../../store/actions/index';
 import { connect } from 'react-redux';
 
+
 class Auth extends Component {
     state = {
         formIsValid: false,
