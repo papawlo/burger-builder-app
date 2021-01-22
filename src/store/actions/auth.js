@@ -24,15 +24,16 @@ export const authFail = (error) => {
 };
 
 export const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expirationDate');
+    localStorage.removeItem('userId');
     return {
         type: actionTypes.AUTH_LOGOUT
     };
 }
 
 export const checkAuthTimeout = (expirationTime) => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('expirationDate');
-    localStorage.removeItem('userId');
+
     return dispatch => {
         setTimeout(() => {
             dispatch(logout());
@@ -84,20 +85,15 @@ export const authCheckState = () => {
     return dispatch => {
         const token = localStorage.getItem('token');
         if (!token) {
-            console.log('eu');
-            console.log("🚀 ~ file: auth.js ~ line 86 ~ authCheckState ~ token", token)
-
             dispatch(logout());
         } else {
             const expirationDate = new Date(localStorage.getItem('expirationDate'));
-            console.log("🚀 ~ file: auth.js ~ line 93 ~ authCheckState ~ expirationDate", expirationDate)
-            if (expirationDate < new Date()) {
-                console.log("🚀 ~ file: auth.js ~ line 95 ~ authCheckState ~ new Date()", new Date())
+            if (expirationDate <= new Date()) {
                 dispatch(logout());
             } else {
                 const userId = localStorage.getItem('userId');
                 dispatch(authSuccess(token, userId));
-                dispatch(checkAuthTimeout(expirationDate.getSeconds() - new Date().getSeconds()));
+                dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime() / 1000)));
             }
         }
     }
