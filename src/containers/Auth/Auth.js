@@ -59,13 +59,18 @@ class Auth extends Component {
                 isValid = value.trim() !== '' && isValid;
             }
             if (rules.isEmail) {
-                isValid = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value.trim()) && isValid;
+                const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+                isValid = pattern.test(value) && isValid
             }
             if (rules.minLength) {
                 isValid = value.length >= rules.minLength && isValid;
             }
             if (rules.maxLength) {
                 isValid = value.length <= rules.maxLength && isValid;
+            }
+            if (rules.isNumeric) {
+                const pattern = /^\d+$/;
+                isValid = pattern.test(value) && isValid
             }
         }
 
@@ -141,8 +146,8 @@ class Auth extends Component {
             form = <Spinner />;
         }
 
-
         let errorMessage = null;
+
         if (this.props.error) {
             errorMessage = (
                 <p className={classes.ErrorMessage}>
@@ -182,14 +187,15 @@ const mapStateToProps = state => {
         error: state.auth.error,
         isAuthenticated: state.auth.token !== null,
         buildingBurger: state.burgerBuilder.building,
-        authRedirectPath: state.auth.authRedirectPath,
-    }
-}
+        authRedirectPath: state.auth.authRedirectPath
+    };
+};
+
 const mapDispatchToProps = dispatch => {
     return {
         onAuth: (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup)),
         onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
-    }
-}
+    };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth);

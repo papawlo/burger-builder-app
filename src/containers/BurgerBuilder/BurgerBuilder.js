@@ -16,11 +16,15 @@ class BurgerBuilder extends Component {
         purchasing: false,
     }
     componentDidMount() {
-        if (this.props.building) {
-            // authRedirect = <Redirect to='/' />
+        console.log(this.props);
+        if (this.props.isBuilding) {
+            // this.setState({ purchasing: true })
+            console.log('is BUILDING')
         } else {
+            console.log('is NOT BUILDING')
             this.props.onInitIngredients();
         }
+
     }
 
     updatePurchaseState(ingredients) {
@@ -32,6 +36,7 @@ class BurgerBuilder extends Component {
     }
 
     purchaseHandler = () => {
+        console.log(this.props);
         if (this.props.isAuthenticated) {
             this.setState({ purchasing: true })
         } else {
@@ -42,7 +47,6 @@ class BurgerBuilder extends Component {
 
     purchaseCancelHandler = () => {
         this.setState({ purchasing: false })
-        // this.setState({ purchasing: false })
     }
 
     purchaseContinueHandler = () => {
@@ -52,7 +56,6 @@ class BurgerBuilder extends Component {
 
     render() {
         const disabledInfo = {
-            // ...this.props.ings
             ...this.props.ings
         }
 
@@ -64,7 +67,6 @@ class BurgerBuilder extends Component {
         let burgerBuilder = this.props.error ? <p>Ingredients can't be loaded</p> : <Spinner />;
 
         if (this.props.ings) {
-
             burgerBuilder = (
                 <Aux>
                     <Burger ingredients={this.props.ings} />
@@ -72,10 +74,10 @@ class BurgerBuilder extends Component {
                         ingredientAdded={this.props.onIngredientAdded}
                         ingredientRemoved={this.props.onIngredientRemoved}
                         disabled={disabledInfo}
-                        currentPrice={this.props.price}
                         purchaseable={this.updatePurchaseState(this.props.ings)}
                         ordered={this.purchaseHandler}
                         isAuth={this.props.isAuthenticated}
+                        price={this.props.price}
                     />
                 </Aux>
             );
@@ -87,14 +89,11 @@ class BurgerBuilder extends Component {
                 price={this.props.price}
             />;
         }
-        // if (this.state.loading) {
-        //     orderSummary = <Spinner />
-        // }
 
         return (
             <Aux>
                 <Modal
-                    show={this.props.purchasing}
+                    show={this.state.purchasing}
                     modalClosed={this.purchaseCancelHandler}
                 >
                     {orderSummary}
@@ -110,8 +109,8 @@ const mapStateToProps = state => {
         ings: state.burgerBuilder.ingredients,
         price: state.burgerBuilder.totalPrice,
         error: state.burgerBuilder.error,
-        purchasing: state.burgerBuilder.purchasing,
-        isAuthenticated: state.auth.token
+        isAuthenticated: state.auth.token !== null,
+        isBuilding: state.burgerBuilder.building
     }
 }
 const mapDispatchToProps = dispatch => {
