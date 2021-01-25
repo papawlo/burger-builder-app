@@ -10,6 +10,7 @@
     margin: 10px auto;
     font-weight: bold;
     box-sizing: border-box;
+    transition: all .2s ease-in-out;
 }
 
 
@@ -33,6 +34,30 @@
 .Info {
     color: hsl(202, 73%, 34%);
     background-color: hsl(212, 100%, 74%);
+}
+
+
+
+.Info:hover,
+.Info:active {
+    color: hsl(203, 46%, 88%);
+    background-color: hsl(212, 100%, 64%);
+    transform: scale(1.025);
+    border: 1px solid hsl(212, 80%, 34%);
+}
+
+.Switch {
+    background-color: #DAD735;
+    border: 1px solid #966909;
+    color: #966909;
+}
+
+.Switch:hover,
+.Switch:active {
+    background-color: #eee018;
+    border: 1px solid #966909;
+    color: #966909;
+    transform: scale(1.025);
 }
 
 @media only screen and (min-width: 600px) {

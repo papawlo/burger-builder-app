@@ -11,7 +11,7 @@ import { updateObject, checkValidity } from '../../shared/utility';
 class Auth extends Component {
     state = {
         formIsValid: false,
-        isSignup: true,
+        isSignup: false,
         controls: {
             email: {
                 elementType: 'input',
@@ -139,14 +139,14 @@ class Auth extends Component {
                 {authRedirect}
                 {errorMessage}
                 <h4>
-                    LOG IN
+                    {this.state.isSignup ? 'SIGN UP' : 'SIGN IN'}
                 </h4>
 
                 {form}
                 <hr />
                 <Button
                     clicked={this.switchAuthModeHandler}
-                    btnType="Info">
+                    btnType={this.state.isSignup ? "Info" : "Switch"}>
                     SWITCH TO {this.state.isSignup ? 'SIGN IN' : 'SIGN UP'}
                 </Button>
             </div>
