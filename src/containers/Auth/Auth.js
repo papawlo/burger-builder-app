@@ -81,7 +81,6 @@ class Auth extends Component {
     }
 
     render() {
-        // console.log(this.props.ingredients);
         const formElementsArray = [];
         for (const key in this.state.controls) {
             if (this.state.controls.hasOwnProperty(key)) {

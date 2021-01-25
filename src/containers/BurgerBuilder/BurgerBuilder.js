@@ -16,12 +16,10 @@ class BurgerBuilder extends Component {
         purchasing: false,
     }
     componentDidMount() {
-        console.log(this.props);
+
         if (this.props.isBuilding) {
             // this.setState({ purchasing: true })
-            console.log('is BUILDING')
         } else {
-            console.log('is NOT BUILDING')
             this.props.onInitIngredients();
         }
 
@@ -36,7 +34,6 @@ class BurgerBuilder extends Component {
     }
 
     purchaseHandler = () => {
-        console.log(this.props);
         if (this.props.isAuthenticated) {
             this.setState({ purchasing: true })
         } else {

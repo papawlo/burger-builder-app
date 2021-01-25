@@ -144,7 +144,6 @@ class ContactData extends Component {
     }
 
     render() {
-        // console.log(this.props.ingredients);
         const formElementsArray = [];
         for (const key in this.state.orderForm) {
             if (this.state.orderForm.hasOwnProperty(key)) {
