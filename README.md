@@ -1,4 +1,4 @@
-![Screenshot](screenshot1.png)
+![Screenshot](burger-builder-app-b5027.web.app_(iPad).png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
